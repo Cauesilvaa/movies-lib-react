@@ -1,10 +1,13 @@
 import Navbar from '../components/Navbar';
 
-import { useEffect, useState } from 'react';
 import MovieCard from '../components/MovieCard';
 
-const moviesURL = import.meta.env.VITE_API
-const apiKey = import.meta.env.VITE_API_KEY
+import { useEffect, useState } from 'react';
+
+import '../../index.css';
+
+const moviesURL = import.meta.env.VITE_API;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 function Home () {
 
@@ -23,7 +26,7 @@ function Home () {
         const topRatedMovidesUrl = `${moviesURL}top_rated?${apiKey}`
 
         getTopRatedMovies(topRatedMovidesUrl)
-    })
+    }, [])
 
     return (
         <div>
@@ -31,8 +34,8 @@ function Home () {
             <Navbar />
 
             <div className="container">
-                <h2 className="container">Melhores filmes:</h2>
-                <div className="movies-contatiner">
+                <h2 className="title">Melhores filmes:</h2>
+                <div className="movies-container">
                     {topMovies.length == 0 && <p>Carregando ...</p>}
                     {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie}/>)}
                 </div>
